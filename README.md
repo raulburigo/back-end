@@ -61,6 +61,18 @@ $ npm run start:prod
 
 [Swagger](http://localhost:3000/docs/)
 
+## Uso
+
+Primeiramente o usuário deve realizar o login através da rota /auth/login, que irá retornar um token válido por 1h.
+
+Este token deve ser utiliado junto com o prefixo Bearer para cadastrar novos clientes através da rota /contacts.
+
+O body para cadastrar novos contatos deve conter um campo "contacts" que contém uma lista de contatos. Cada contato deve ter os campos "name" e "cellphone", ambos strings.
+
+O campo "cellphone" deve ter exatamente 13 caracteres numéricos.
+
+O campo "name" possui um limite de 200 caracteres para o cliente Macapá e 100 caracteres para o cliente Varejão.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
