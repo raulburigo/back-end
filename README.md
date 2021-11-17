@@ -34,13 +34,15 @@ $ npm install
 
 ## Docker
 
+Inicia os bancos e cria as tabelas necessárias para o bom funcionamento da API.
+
 ```bash
 docker-compose up
 ```
 
 ## Config
 
-.env - PORT
+É possível alterar a porta da API no .env (PORT).
 
 ## Running the app
 
