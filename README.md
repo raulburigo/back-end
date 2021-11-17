@@ -65,6 +65,9 @@ $ npm run start:prod
 
 Primeiramente o usuário deve realizar o login através da rota /auth/login, que irá retornar um token válido por 1h.
 
+- credenciais Macapá: { "username": "macapa", "password": "macapa" }
+- credenciais Varejão: { "username": "varejao", "password": "varejao" }
+
 Este token deve ser utiliado junto com o prefixo Bearer para cadastrar novos clientes através da rota /contacts.
 
 O body para cadastrar novos contatos deve conter um campo "contacts" que contém uma lista de contatos. Cada contato deve ter os campos "name" e "cellphone", ambos strings.
