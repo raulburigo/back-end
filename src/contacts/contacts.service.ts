@@ -1,4 +1,4 @@
-import { Injectable, Scope, Inject } from '@nestjs/common';
+import { Injectable, Scope, Inject, HttpException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { getManager } from 'typeorm';
 
@@ -32,6 +32,18 @@ export class ContactsService {
           '+$1 ($2) $3-$4',
         );
       }
+    }
+
+    if (
+      this.request.user.username == 'varejao' &&
+      createContactDto.contacts.some((contact) => {
+        contact.name.length > 100;
+      })
+    ) {
+      throw new HttpException(
+        `contacts names must be shorter than or equal to 100 characters`,
+        400,
+      );
     }
 
     return await contactsRepository.save(createContactDto.contacts);

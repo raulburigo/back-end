@@ -11,6 +11,7 @@ import { Type } from 'class-transformer';
 class ContactsDto {
   @ApiProperty()
   @IsString()
+  @Length(1, 200)
   name: string;
 
   @ApiProperty()
