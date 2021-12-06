@@ -1,6 +1,6 @@
 import { Injectable, Scope, Inject, HttpException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
-import { getManager } from 'typeorm';
+import { TokensService } from 'src/tokens/tokens.service';
 
 import { Contact } from './contact.entity';
 import { CreateContactsDto } from './dto/create-contact.dto';
@@ -10,19 +10,23 @@ export class ContactsService {
   constructor(
     @Inject(REQUEST)
     private readonly request,
+    private tokensService: TokensService,
   ) {}
 
   async findAll(): Promise<Contact[]> {
-    const contactsRepository = getManager(
+    const contactsRepository = await this.tokensService.getCustomRepository(
       this.request.user.username,
-    ).getRepository(Contact);
+      Contact,
+    );
+
     return contactsRepository.find();
   }
 
   async create(createContactDto: CreateContactsDto): Promise<Contact[]> {
-    const contactsRepository = getManager(
+    const contactsRepository = await this.tokensService.getCustomRepository(
       this.request.user.username,
-    ).getRepository(Contact);
+      Contact,
+    );
 
     if (this.request.user.username == 'macapa') {
       for (const contactDto of createContactDto.contacts) {

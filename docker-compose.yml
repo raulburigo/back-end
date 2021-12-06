@@ -24,3 +24,13 @@ services:
     environment:
       POSTGRES_PASSWORD: 'admin'
       POSTGRES_USER: 'admin'
+
+  postgresql-public:
+    image: postgres
+    ports:
+      - '5433:5432'
+    volumes:
+      - './db/migrations_public:/docker-entrypoint-initdb.d/'
+    environment:
+      POSTGRES_PASSWORD: 'admin'
+      POSTGRES_USER: 'admin'

@@ -8,43 +8,19 @@ import { AppController } from './app.controller';
 import { ContactsModule } from './contacts/contacts.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-
-import { Contact } from './contacts/contact.entity';
+import { Token } from './tokens/token.entity';
+import { TokensModule } from './tokens/tokens.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      synchronize: false,
-      autoLoadEntities: true,
-      entities: [Contact],
-      username: 'admin',
-      password: 'admin',
-      database: 'admin',
-    }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      name: 'macapa',
-      host: 'localhost',
-      port: 3306,
-      synchronize: false,
-      autoLoadEntities: true,
-      entities: [Contact],
-      username: 'admin',
-      password: 'admin',
-      database: 'admin',
-    }),
-    TypeOrmModule.forRoot({
       type: 'postgres',
-      name: 'varejao',
       host: 'localhost',
-      port: 5432,
+      port: 5433,
       synchronize: false,
       autoLoadEntities: true,
-      entities: [Contact],
+      entities: [Token],
       username: 'admin',
       password: 'admin',
       database: 'admin',
@@ -52,6 +28,7 @@ import { Contact } from './contacts/contact.entity';
     ContactsModule,
     UsersModule,
     AuthModule,
+    TokensModule,
   ],
   controllers: [AppController],
 })
